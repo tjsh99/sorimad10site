@@ -27,7 +27,7 @@ header {
     background-color: white;
     padding-top: 40px;
     /* 위쪽 여백 */
-    padding-bottom: 30px;
+    padding-bottom: 80px;
     /* 아래쪽 여백 */
     text-align: center;
 }
@@ -47,7 +47,7 @@ header {
 .gnb {
     background-color: #E8D9FF;
     /* 연보라색 배경 */
-    border-radius: 12px;
+    border-radius: 6px;
 
     /* 중요! ⭐ 안쪽 여백을 0으로 설정해야 색이 끝까지 참 */
     padding: 0;
@@ -79,7 +79,7 @@ header {
 .gnb a {
     display: block;
     width: 100%;
-    padding: 20px 0;
+    padding: 12px 0;
     /* 버튼 높이감 */
     font-size: 1.1rem;
     font-weight: bold;
@@ -349,4 +349,162 @@ strong {
     color: #666;
     font-weight: bold;
     /* 밑줄 대신 굵게 처리 */
+}
+
+
+/* ========================================= */
+/* 📱 모바일 최적화 (화면 폭 768px 이하일 때) */
+/* ========================================= */
+@media (max-width: 768px) {
+
+    /* 1. 전체 레이아웃 */
+    .container {
+        padding: 0 15px;
+        /* 양옆 여백 줄임 */
+    }
+
+    .content-area {
+        padding: 20px 10px;
+        /* 본문 여백 축소 */
+    }
+
+    /* 2. 메인 타이틀 줄이기 */
+    header {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .main-title {
+        font-size: 2rem;
+        /* 제목 크기 축소 */
+        margin-bottom: 15px;
+    }
+
+    /* 3. 메인 메뉴바 (GNB) - 완벽 수정 버전 (2x2 배열) */
+    .gnb {
+        height: auto;
+        /* 높이 자동 조절 */
+        border-radius: 8px;
+    }
+
+    .gnb ul {
+        flex-wrap: wrap;
+        /* ★ 중요: 여기서 줄바꿈 허용 */
+    }
+
+    .gnb li {
+        flex: 0 0 50%;
+        /* 한 줄에 50%씩 차지 (2개 배치) */
+        width: 50%;
+        box-sizing: border-box;
+
+        /* 가로선 (메뉴 사이 구분) */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    /* 홀수 번째(왼쪽) 메뉴는 오른쪽에 세로선 추가 */
+    .gnb li:nth-child(odd) {
+        border-right: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    /* 마지막 줄(3번째, 4번째)은 바닥 선 없애기 */
+    .gnb li:nth-last-child(1),
+    .gnb li:nth-last-child(2) {
+        border-bottom: none;
+    }
+
+    .gnb a {
+        padding: 12px 0;
+        /* 터치하기 좋게 높이 조정 */
+        font-size: 0.95rem;
+        /* 글자 크기 살짝 줄임 */
+    }
+
+    /* 4. 서브 메뉴 (10선 결과, 모두의 10선...) */
+    .sub-gnb {
+        margin-top: 15px;
+        margin-bottom: 20px;
+    }
+
+    .sub-gnb ul {
+        gap: 20px;
+        /* 간격 좁힘 */
+        justify-content: center;
+    }
+
+    .sub-gnb a {
+        font-size: 0.9rem;
+    }
+
+    /* 5. 어워즈 페이지 (상단 3개/4개 박스) */
+    .awards-top-section {
+        flex-direction: column;
+        /* 세로로 쭉 나열 */
+        gap: 30px;
+    }
+
+    .top-card {
+        margin-bottom: 10px;
+    }
+
+    /* 어워즈 후보 리스트 (5개 -> 2개씩 보이게) */
+    .nominee-grid {
+        grid-template-columns: repeat(2, 1fr);
+        /* 한 줄에 2개 */
+        gap: 10px;
+    }
+
+    /* 후보 이름 폰트 줄이기 */
+    .nominee-name {
+        font-size: 0.85rem;
+    }
+
+    /* 6. 10선 결과 / 모두의 10선 (영상 리스트) */
+    .video-grid {
+        grid-template-columns: repeat(2, 1fr);
+        /* 한 줄에 2개 */
+        gap: 10px;
+    }
+
+    .video-title {
+        font-size: 0.85rem;
+        padding: 8px;
+    }
+
+    /* 7. 코멘트 페이지 */
+    .video-header {
+        flex-direction: column;
+        /* 썸네일과 제목 세로로 */
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .video-thumbnail {
+        width: 100px;
+        /* 썸네일 조금 키움 */
+        height: auto;
+    }
+
+    .comment-table th,
+    .comment-table td {
+        padding: 8px;
+        /* 표 여백 줄임 */
+        font-size: 0.85rem;
+    }
+
+    /* 모바일에서 표의 '투표자' 칸 너비 조정 */
+    .comment-table td:first-child {
+        width: 30%;
+        min-width: 60px;
+    }
+
+    /* 8. 톱 페이지 설명문 */
+    .simple-intro {
+        padding: 0 5px;
+        margin: 30px auto;
+    }
+
+    .intro-title {
+        font-size: 1.3rem;
+    }
 }
