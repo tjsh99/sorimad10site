@@ -11,26 +11,19 @@
         /* 기존 코드 스타일 정리 */
         #legacy-code-area {
             width: 100%;
-            /* 가로 꽉 채우기 */
             text-align: left;
-            /* 내부 텍스트 왼쪽 정렬 */
         }
 
         .comment-group {
             margin-bottom: 40px;
-            /* 그룹 간 간격 넉넉하게 */
             border: 1px solid #eee;
-            /* 전체 박스 테두리 */
             border-radius: 12px;
             overflow: hidden;
-            /* 둥근 모서리 안 튀어나오게 */
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            /* 살짝 그림자 */
         }
 
         .video-header {
             background-color: #333;
-            /* 헤더 배경색 */
             color: #fff;
             padding: 15px 20px;
             font-size: 1.1rem;
@@ -44,7 +37,6 @@
 
         .video-header:hover {
             background-color: #444;
-            /* 마우스 올리면 살짝 밝게 */
         }
 
         .video-thumbnail {
@@ -53,7 +45,6 @@
             border-radius: 4px;
             object-fit: cover;
             flex-shrink: 0;
-            /* 썸네일 찌그러짐 방지 */
             background-color: black;
         }
 
@@ -66,7 +57,6 @@
         .comment-table th,
         .comment-table td {
             padding: 12px 15px;
-            /* 여백 넉넉하게 */
             text-align: left;
             border-bottom: 1px solid #eee;
             line-height: 1.5;
@@ -77,26 +67,20 @@
             font-weight: bold;
             color: #555;
             border-bottom: 2px solid #ddd;
-            /* 헤더 구분선 조금 진하게 */
         }
 
-        /* 첫 번째 칸 (투표자 이름) 너비 및 스타일 */
         .comment-table td:first-child {
             width: 20%;
             min-width: 100px;
-            /* 너무 좁아지지 않게 */
             font-weight: bold;
             color: #333;
             vertical-align: top;
-            /* 이름이 길어도 위쪽에 붙게 */
         }
 
-        /* 두 번째 칸 (코멘트) 색상 */
         .comment-table td:last-child {
             color: #555;
         }
 
-        /* 마지막 줄은 밑줄 없애기 (깔끔하게) */
         .comment-table tr:last-child td {
             border-bottom: none;
         }
@@ -175,17 +159,17 @@
                                         comments: []
                                     };
                                 }
+                                // 여기서 배열에 넣는 순서가 곧 시트 순서임
                                 if (videoComment) {
                                     videoComments[videoId].comments.push({ bValue, comment: videoComment });
                                 } else {
-                                    // 빈 코멘트도 일단 데이터에는 있지만, 나중에 출력할지 말지는 선택 가능
                                     videoComments[videoId].comments.push({ bValue, comment: '' });
                                 }
                             }
                         }
                     });
 
-                    // 정렬: 코멘트 많은 순 -> 제목 가나다순
+                    // 영상 자체는 코멘트 많은 순 -> 제목 순으로 정렬 유지
                     const sortedVideos = Object.entries(videoComments).sort((a, b) => {
                         const commentCountA = a[1].comments.length;
                         const commentCountB = b[1].comments.length;
@@ -195,11 +179,10 @@
                     });
 
                     sortedVideos.forEach(([videoId, { title, thumbnail, comments }]) => {
-                        // 코멘트 알파벳순 정렬
-                        comments.sort((a, b) => a.comment.localeCompare(b.comment));
 
-                        // 만약 '코멘트가 있는 영상만' 보여주고 싶으면 아래 if문 주석 해제
-                        // if (comments.every(c => c.comment === '')) return;
+                        // ★ [수정됨] 기존의 코멘트 내용 정렬 코드를 삭제함!
+                        // 이제 시트에 입력된 순서(배열에 담긴 순서) 그대로 출력됨
+                        // comments.sort((a, b) => a.comment.localeCompare(b.comment)); <--- 삭제된 코드
 
                         const group = document.createElement('div');
                         group.className = 'comment-group';
@@ -236,10 +219,7 @@
 
                         const tableBody = document.createElement('tbody');
 
-                        // 코멘트가 없는 행은 출력 안 하고 싶으면 여기서 필터링 가능
                         comments.forEach(({ bValue, comment }) => {
-                            // 예: if (comment === '') return;
-
                             const row = document.createElement('tr');
                             const cell1 = document.createElement('td');
                             cell1.textContent = bValue || '-'; // 이름 없으면 - 표시
