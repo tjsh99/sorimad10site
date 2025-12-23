@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
-        /* 기존 코드 스타일 정리 */
         #legacy-code-area {
             width: 100%;
             text-align: left;
@@ -159,7 +158,6 @@
                                         comments: []
                                     };
                                 }
-                                // 여기서 배열에 넣는 순서가 곧 시트 순서임
                                 if (videoComment) {
                                     videoComments[videoId].comments.push({ bValue, comment: videoComment });
                                 } else {
@@ -169,7 +167,6 @@
                         }
                     });
 
-                    // 영상 자체는 코멘트 많은 순 -> 제목 순으로 정렬 유지
                     const sortedVideos = Object.entries(videoComments).sort((a, b) => {
                         const commentCountA = a[1].comments.length;
                         const commentCountB = b[1].comments.length;
@@ -180,14 +177,9 @@
 
                     sortedVideos.forEach(([videoId, { title, thumbnail, comments }]) => {
 
-                        // ★ [수정됨] 기존의 코멘트 내용 정렬 코드를 삭제함!
-                        // 이제 시트에 입력된 순서(배열에 담긴 순서) 그대로 출력됨
-                        // comments.sort((a, b) => a.comment.localeCompare(b.comment)); <--- 삭제된 코드
-
                         const group = document.createElement('div');
                         group.className = 'comment-group';
 
-                        // 헤더 (썸네일 + 제목)
                         const header = document.createElement('div');
                         header.className = 'video-header';
                         const thumbnailImg = document.createElement('img');
@@ -202,7 +194,6 @@
 
                         group.appendChild(header);
 
-                        // 표 생성
                         const table = document.createElement('table');
                         table.className = 'comment-table';
 
@@ -222,7 +213,7 @@
                         comments.forEach(({ bValue, comment }) => {
                             const row = document.createElement('tr');
                             const cell1 = document.createElement('td');
-                            cell1.textContent = bValue || '-'; // 이름 없으면 - 표시
+                            cell1.textContent = bValue || '-'; 
                             const cell2 = document.createElement('td');
                             cell2.textContent = comment || '';
                             row.appendChild(cell1);

@@ -8,26 +8,21 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
-        /* 1. 가로 사이즈 확장 */
         #legacy-code-area {
             width: 100%;
             max-width: 100%;
-            /* 기존 800px 제한 해제 -> 메뉴바랑 똑같이 넓어짐 */
             margin: 0 auto;
             text-align: left;
         }
 
         .toggle-section {
             margin-bottom: 10px;
-            /* 섹션 간 간격도 줄임 */
         }
 
-        /* 2. 참가자 이름 칸(헤더) 높이 축소 */
         .toggle-header {
             background-color: #333;
             color: #fff;
             padding: 10px 15px;
-            /* 위아래 패딩 15px -> 10px로 축소 */
             cursor: pointer;
             border-radius: 6px;
             font-size: 1rem;
@@ -47,23 +42,18 @@
             display: flex;
             flex-direction: column;
             gap: 5px;
-            /* 3. 카드 사이 간격 15px -> 5px로 대폭 축소 (촘촘하게) */
             padding: 0 5px;
             transition: max-height 0.5s ease-out, padding 0.5s ease-out;
         }
 
         .toggle-section.open .video-scroll-container {
             max-height: 2000px;
-            /* 넉넉하게 */
             padding: 10px 5px;
-            /* 펼쳤을 때 여백 */
         }
 
-        /* 3. 비디오 카드 콤팩트하게 수정 */
         .video-card {
             display: flex;
             align-items: center;
-            /* 위쪽 정렬 대신 중앙 정렬로 변경해서 더 안정감 있게 */
             background-color: #fff;
             border: 1px solid #eee;
             border-radius: 8px;
@@ -71,23 +61,18 @@
             transition: transform 0.2s;
             width: 100%;
             box-sizing: border-box;
-
             padding: 8px;
-            /* 카드 안쪽 여백 15px -> 8px로 축소 */
             text-align: left;
         }
 
         .video-card:hover {
             transform: translateX(5px);
-            /* 위로 뜨는 대신 오른쪽으로 살짝 이동 */
             background-color: #f9f9f9;
         }
 
         .video-thumbnail {
             width: 120px;
-            /* 썸네일 너비 160px -> 120px로 축소 */
             height: 68px;
-            /* 비율 맞춰서 높이 자동 조절 (16:9) */
             object-fit: cover;
             border-radius: 4px;
             margin-right: 15px;
@@ -101,18 +86,13 @@
             justify-content: center;
             flex: 1;
             overflow: hidden;
-            /* 글자 넘치면 숨김 */
         }
 
         .video-title {
             font-size: 1rem;
-            /* 제목 크기 살짝 줄임 */
             font-weight: bold;
             color: #222;
             margin-bottom: 4px;
-            /* 제목과 코멘트 사이 간격 좁힘 */
-
-            /* 제목이 너무 길면 ...으로 표시 (깔끔함 유지) */
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -120,18 +100,14 @@
 
         .video-comment {
             font-size: 0.9rem;
-            /* 코멘트 크기 조절 */
             color: #666;
             line-height: 1.3;
-
-            /* 코멘트도 최대 2줄까지만 표시하고 넘치면 ... 처리 (선택사항) */
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
 
-        /* 스크롤바 디자인 */
         .video-scroll-container::-webkit-scrollbar {
             width: 6px;
         }
@@ -264,7 +240,6 @@
             }
 
             function toggleSection(section) {
-                // 하나만 열리게 하기 (기존 로직 유지)
                 document.querySelectorAll('.toggle-section').forEach(sec => {
                     if (sec !== section) {
                         sec.classList.remove('open');

@@ -26,30 +26,23 @@
             color: #333;
         }
 
-        /* ▼▼▼ [수정된 부분] ▼▼▼ */
         .video-grid {
             display: grid;
-            /* 기본(PC): 최소 200px 너비 유지하며 자동 채움 */
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 15px;
         }
 
-        /* 📱 모바일 강제 설정 (HTML 내부 스타일이 우선순위가 높아서 여기에 추가해야 함) */
         @media (max-width: 768px) {
             .video-grid {
-                /* 너비 상관없이 무조건 2개씩 배치 */
                 grid-template-columns: repeat(2, 1fr) !important;
                 gap: 10px;
             }
 
-            /* 모바일에서 제목 글자 크기 조금 줄임 (칸이 좁아지니까) */
             .video-title {
                 font-size: 0.8rem;
                 padding: 8px;
             }
         }
-
-        /* ▲▲▲ [여기까지] ▲▲▲ */
 
         .video-card {
             background-color: #fff;
@@ -86,7 +79,6 @@
             text-align: center;
             line-height: 1.4;
             word-break: keep-all;
-            /* 단어 단위로 줄바꿈 */
         }
     </style>
 </head>
