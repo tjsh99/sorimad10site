@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>소리MAD 10선 - 기사 읽기</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* --- 기사 페이지 전용 스타일 --- */
+
+        /* 연도별 구역 */
+        .article-section {
+            margin-bottom: 60px;
+            /* 연도 사이 간격 */
+            text-align: left;
+        }
+
+        /* 연도 제목 (예: 2024년) */
+        .article-year-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #333;
+            border-bottom: 2px solid #E8D9FF;
+            /* 보라색 밑줄 */
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .article-year-title span {
+            background-color: #E8D9FF;
+            color: #6200ea;
+            font-size: 0.9rem;
+            padding: 5px 10px;
+            border-radius: 20px;
+            margin-left: 15px;
+            font-weight: bold;
+        }
+
+        /* 기사 리스트 그리드 (바둑판 배열) */
+        .article-list {
+            display: grid;
+            /* 화면 크기에 따라 열 개수 자동 조절 (최소 200px 너비 보장) */
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            /* 버튼 사이 간격 */
+        }
+
+        /* 기사 링크 버튼 */
+        .article-link {
+            display: block;
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: #444;
+            transition: 0.2s;
+            text-align: center;
+
+            /* 말줄임표 처리 (이름이 너무 길 경우) */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* 마우스 올렸을 때 효과 */
+        .article-link:hover {
+            background-color: #6200ea;
+            /* 보라색 배경 */
+            color: white;
+            /* 흰색 글자 */
+            transform: translateY(-3px);
+            /* 살짝 위로 뜸 */
+            box-shadow: 0 5px 15px rgba(98, 0, 234, 0.2);
+            /* 그림자 */
+            border-color: #6200ea;
+        }
+
+        /* 모바일 대응 */
+        @media (max-width: 600px) {
+            .article-list {
+                grid-template-columns: repeat(2, 1fr);
+                /* 모바일에선 2줄로 고정 */
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <h1 class="main-title">
+                <a href="index.html">소리MAD 대상</a>
+            </h1>
+
+            <nav class="gnb">
+                <ul>
+                    <li><a href="result_2025.html">소리MAD 10선</a></li>
+                    <li><a href="awards_2025.html">소리MAD 어워즈</a></li>
+                    <li><a href="vote.html">투표하기</a></li>
+                    <li><a href="article.html" class="active">10선 기사 읽기</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main class="content-area">
+
+
+            <section class="article-section">
+                <div class="article-year-title">2024년</div>
+                <div class="article-list">
+                    <a href="https://blog.naver.com/ozhan1121/223716575529" target="_blank" class="article-link">oz
+                        Han</a>
+                    <a href="https://hansol072.tistory.com/6" target="_blank" class="article-link">바셀린</a>
+                    <a href="https://blog.naver.com/looklng/223718625012" target="_blank" class="article-link">루klng
+                        LNG</a>
+                    <a href="https://tjsh99.tistory.com/25" target="_blank" class="article-link">서노</a>
+                    <a href="https://qyurila.github.io/blog/posts/otomad-top10-2024/" target="_blank"
+                        class="article-link">릴라</a>
+                    <a href="https://blog.naver.com/jungj602/223722422147" target="_blank" class="article-link">여유만만</a>
+                    <a href="https://blog.naver.com/alcmfnrl/223724563287" target="_blank"
+                        class="article-link">Retions</a>
+                    <a href="https://saikira.tistory.com/23" target="_blank" class="article-link">사이키라</a>
+                    <a href="https://yang-otomad.tistory.com/12" target="_blank" class="article-link">양정훈</a>
+                    <a href="https://moru-is-person.tistory.com/3" target="_blank" class="article-link">모르는 사람</a>
+                    <a href="https://kyser.tistory.com/22" target="_blank" class="article-link">카이사르</a>
+                    <a href="https://every4season.tistory.com/23" target="_blank" class="article-link">사계</a>
+                </div>
+            </section>
+
+            <section class="article-section">
+                <div class="article-year-title">2023년</div>
+                <div class="article-list">
+                    <a href="https://blog.naver.com/ozhan1121/223315836919" target="_blank" class="article-link">oz
+                        Han</a>
+                    <a href="https://kyser.tistory.com/15" target="_blank" class="article-link">카이사르</a>
+                    <a href="https://blog.naver.com/jungj602/223317691833" target="_blank" class="article-link">여유만만</a>
+                    <a href="https://qyurila.github.io/blog/posts/otomad-top10-2023/" target="_blank"
+                        class="article-link">릴라</a>
+                    <a href="https://every4season.tistory.com/12" target="_blank" class="article-link">사계</a>
+                    <a href="https://blog.naver.com/looklng/223322463728" target="_blank" class="article-link">루klng
+                        LNG</a>
+                    <a href="https://tjsh99.tistory.com/9" target="_blank" class="article-link">서노</a>
+                    <a href="https://isaac2020.tistory.com/2" target="_blank" class="article-link">TB</a>
+                    <a href="https://yang-otomad.tistory.com/5" target="_blank" class="article-link">양정훈</a>
+                    <a href="https://moru-is-person.blogspot.com/2024/01/2310s.html" target="_blank"
+                        class="article-link">모르는 사람</a>
+                </div>
+            </section>
+
+            <section class="article-section">
+                <div class="article-year-title">2022년</div>
+                <div class="article-list">
+                    <a href="https://rowanhamilton.tistory.com/5" target="_blank" class="article-link">oz Han</a>
+                    <a href="https://tjsh99.tistory.com/2" target="_blank" class="article-link">서노</a>
+                    <a href="https://blog.naver.com/looklng/222980568003" target="_blank" class="article-link">루klng
+                        LNG</a>
+                    <a href="https://foregoing-recorder-cc4.notion.site/MAD-10-TB-208c71697d8845ea97766a3eae447f74"
+                        target="_blank" class="article-link">TB</a>
+                    <a href="https://kyser.tistory.com/5" target="_blank" class="article-link">카이사르</a>
+                    <a href="https://blog.naver.com/jungj602/222983159232" target="_blank" class="article-link">여유만만</a>
+                    <a href="https://every4season.tistory.com/9" target="_blank" class="article-link">사계</a>
+                </div>
+            </section>
+
+            <section class="article-section">
+                <div class="article-year-title">2021년</div>
+                <div class="article-list">
+                    <a href="https://every4season.tistory.com/5" target="_blank" class="article-link">사계</a>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+</body>
+
+</html>

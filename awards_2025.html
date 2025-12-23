@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>소리MAD 어워즈 - 2025</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* 2025년 페이지 전용 스타일 보정 */
+
+        /* 이름이 긴 경우 레이아웃 깨짐 방지 */
+        .nominee-name {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            /* 최대 2줄까지만 표시 */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            word-break: break-word;
+            /* 긴 단어 강제 줄바꿈 */
+            height: 2.8em;
+            /* 높이 고정 (줄바꿈 되더라도 카드 높이 일정하게) */
+            line-height: 1.4;
+        }
+
+        /* 상단 집계 중 카드 텍스트 색상 흐리게 */
+        .top-card p {
+            color: #999;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <h1 class="main-title">
+                <a href="index.html">소리MAD 대상</a>
+            </h1>
+
+            <nav class="gnb">
+                <ul>
+                    <li><a href="result_2025.html">소리MAD 10선</a></li>
+                    <li><a href="awards_2025.html" class="active">소리MAD 어워즈</a></li>
+                    <li><a href="vote.html">투표하기</a></li>
+                    <li><a href="article.html">10선 기사 읽기</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main class="content-area">
+
+            <div class="year-selector">
+                <a href="awards_2025.html" class="year-btn year-active">2025</a>
+                <a href="awards_2024.html" class="year-btn">2024</a>
+            </div>
+
+            <section class="awards-top-section">
+                <div class="top-card">
+                    <div class="img-wrapper">
+                        <img src="https://placehold.co/600x338/E8D9FF/6200ea?text=?" alt="집계 중">
+                    </div>
+                    <h3>🎵 올해의 음악</h3>
+                    <p>집계 중...</p>
+                </div>
+                <div class="top-card">
+                    <div class="img-wrapper">
+                        <img src="https://placehold.co/600x338/E8D9FF/6200ea?text=?" alt="집계 중">
+                    </div>
+                    <h3>📺 올해의 소재</h3>
+                    <p>집계 중...</p>
+                </div>
+                <div class="top-card">
+                    <div class="img-wrapper">
+                        <img src="https://placehold.co/600x338/E8D9FF/6200ea?text=?" alt="집계 중">
+                    </div>
+                    <h3>📅 올해의 기획</h3>
+                    <p>집계 중...</p>
+                </div>
+                <div class="top-card">
+                    <div class="img-wrapper">
+                        <img src="https://placehold.co/600x338/E8D9FF/6200ea?text=?" alt="집계 중">
+                    </div>
+                    <h3>🗣️ 올해의 유행어</h3>
+                    <p>집계 중...</p>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <section class="awards-category">
+                <h2 class="category-title">🎵 올해의 음악 부문 후보</h2>
+                <div class="nominee-grid">
+                    <div class="nominee-card">
+                        <div class="img-wrapper">
+                            <img src="images_2025/음악1.jpg" alt="모니터링">
+                        </div>
+                        <p class="nominee-name" title="모니터링 (モニタリング)">모니터링 (モニタリング)</p>
+                    </div>
+                    <div class="nominee-card">
+                        <div class="img-wrapper">
+                            <img src="images_2025/음악2.jpg" alt="(무)책임집합체">
+                        </div>
+                        <p class="nominee-name" title="(무)책임집합체 (㋰責任集合体)">(무)책임집합체 (㋰責任集合体)</p>
+                    </div>
+                    <div class="nominee-card">
+                        <div class="img-wrapper">
+                            <img src="images_2025/음악3.jpg" alt="어떻게 되어버릴 것 같아!">
+                        </div>
+                        <p class="nominee-name" title="어떻게 되어버릴 것 같아! (どうにかなっちゃいそう！)">어떻게 되어버릴 것 같아! (どうにかなっちゃいそう！)</p>
+                    </div>
+                    <div class="nominee-card">
+                        <div class="img-wrapper">
+                            <img src="images_2025/음악4.jpg" alt="일천광년">
+                        </div>
+                        <p class="nominee-name" title="일천광년 (一千光年)">일천광년 (一千光年)</p>
+                    </div>
+                    <div class="nominee-card">
+                        <div class="img-wrapper">
+                            <img src="images_2025/음악5.jpg" alt="APT.">
+                        </div>
+                        <p class="nominee-name" title="APT.">APT.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="awards-category">
+                <h2 class="category-title">📺 올해의 소재 부문 후보</h2>
+                <div class="nominee-grid">
+                    <div class="nominee-card">
+                        <div class="img-wrapper">
+                            <img src="images_2025/소재1.jpg" alt="대정령">
+                        </div>
+                        <p class="nominee-name">대정령</p>
+                    </div>
+                    <div class="nominee-card">
+                        <div class="img-wrapper">
+                            <img src="images_2025/소재2.jpg" alt="아이스크림 광고">
+                        </div>
+                        <p class="nominee-name">아이스크림 광고</p>
+                    </div>
+                    <div class="nominee-card">
+                        <div class="img-wrapper">
+                            <img src="images_2025/소재3.jpg" alt="오징어 게임">
+                        </div>
+                        <p class="nominee-name">오징어 게임</p>
+                    </div>
+                    <div class="nominee-card">
+                        <div class="img-wrapper">
+                            <img src="images_2025/소재4.jpg" alt="트릭컬 리바이브">
+                        </div>
+                        <p class="nominee-name">트릭컬 리바이브</p>
+                    </div>
+                    <div class="nominee-card">
+                        <div class="img-wrapper">
+                            <img src="images_2025/소재5.jpg" alt="RED-WIKI 등재 소재">
+                        </div>
+                        <p class="nominee-name">RED-WIKI 등재 소재</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="awards-category">
+                <h2 class="category-title">📅 올해의 기획 부문 후보</h2>
+                <div class="nominee-grid">
+                    <div class="nominee-card">
+                        <div class="img-wrapper">
+                            <img src="images_2025/기획1.jpg" alt="더욱더! 소리MAD 게시 이벤트 2025">
+                        </div>
+                        <p class="nominee-name" title="더욱더! 소리MAD 게시 이벤트 2025">더욱더! 소리MAD 게시 이벤트 2025</p>
+                    </div>
+                    <div class="nominee-card">
+                        <div class="img-wrapper">
+                            <img src="images_2025/기획2.jpg" alt="라스트 원 스트림 2">
+                        </div>
+                        <p class="nominee-name">라스트 원 스트림 2</p>
+                    </div>
+                    <div class="nominee-card">
+                        <div class="img-wrapper">
+                            <img src="images_2025/기획3.jpg" alt="소리집">
+                        </div>
+                        <p class="nominee-name">소리집</p>
+                    </div>
+                    <div class="nominee-card">
+                        <div class="img-wrapper">
+                            <img src="images_2025/기획4.jpg" alt="LET'S PLAY 2">
+                        </div>
+                        <p class="nominee-name">LET'S PLAY 2</p>
+                    </div>
+                    <div class="nominee-card">
+                        <div class="img-wrapper">
+                            <img src="images_2025/기획5.jpg" alt="RENDERROR_OFFLINE">
+                        </div>
+                        <p class="nominee-name">RENDERROR_OFFLINE</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="awards-category">
+                <h2 class="category-title">🗣️ 올해의 유행어 부문 후보</h2>
+                <div class="nominee-grid">
+                    <div class="nominee-card">
+                        <div class="img-wrapper">
+                            <img src="images_2025/유행어1.jpg" alt="나루호도 류이치의 최애 ○○">
+                        </div>
+                        <p class="nominee-name" title="나루호도 류이치의 최애 ○○">나루호도 류이치의 최애 ○○</p>
+                    </div>
+                    <div class="nominee-card">
+                        <div class="img-wrapper">
+                            <img src="images_2025/유행어2.jpg" alt="난 바로 보고 싶다고호">
+                        </div>
+                        <p class="nominee-name" title="난 바로 보고 싶다고호">난 바로 보고 싶다고호</p>
+                    </div>
+                    <div class="nominee-card">
+                        <div class="img-wrapper">
+                            <img src="images_2025/유행어3.jpg" alt="둘이서먹다하나죽어도...">
+                        </div>
+                        <p class="nominee-name"
+                            title="둘이서먹다하나죽어도모르는맛인울퉁불퉁드르르드르르르르르드르르르르드르르르르르르르르르르드르르드르르르드르르르다다다다다다다다다다다다다울트라트레일러자막이오른다르르르르르르르르르르르르너를또어움직이고있어">
+                            둘이서먹다하나죽어도모르는맛인울퉁불퉁드르르드르르르르르드르르르르드르르르르르르르르르르드르르드르르르드르르르다다다다다다다다다다다다다울트라트레일러자막이오른다르르르르르르르르르르르르너를또어움직이고있어
+                        </p>
+                    </div>
+                    <div class="nominee-card">
+                        <div class="img-wrapper">
+                            <img src="images_2025/유행어4.jpg" alt="세이아아!!! 네에루우!!! 리오오오!!!">
+                        </div>
+                        <p class="nominee-name" title="세이아아!!! 네에루우!!! 리오오오!!!">세이아아!!! 네에루우!!! 리오오오!!!</p>
+                    </div>
+                    <div class="nominee-card">
+                        <div class="img-wrapper">
+                            <img src="images_2025/유행어5.jpg" alt="(깡!) (빰!)">
+                        </div>
+                        <p class="nominee-name" title="(깡!) (빰!)">(깡!) (빰!)</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+</body>
+
+</html>
