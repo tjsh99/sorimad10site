@@ -29,7 +29,7 @@ header {
     background-color: white;
     padding-top: 40px;
     /* 위쪽 여백 */
-    padding-bottom: 80px;
+    padding-bottom: 30px;
     /* 아래쪽 여백 */
     text-align: center;
 }
@@ -37,7 +37,7 @@ header {
 .main-title {
     font-size: 3rem;
     font-weight: bold;
-    margin: 0 0 20px 0;
+    margin: 0 0 40px 0;
     letter-spacing: -2px;
 }
 
@@ -47,7 +47,7 @@ header {
 
 /* 3. 메인 메뉴바 (GNB) - 꽉 채우기 완벽 수정 */
 .gnb {
-    background-color: #E8D9FF;
+    background-color: #8F00FF;
     /* 연보라색 배경 */
     border-radius: 6px;
 
@@ -85,7 +85,7 @@ header {
     /* 버튼 높이감 */
     font-size: 1.1rem;
     font-weight: bold;
-    color: #555;
+    color: #ffffff;
     transition: 0.1s;
     /* 반응 속도 빠르게 */
 }
@@ -93,7 +93,7 @@ header {
 /* 마우스 올렸을 때(Hover) & 활성화(Active) 상태 */
 .gnb a:hover,
 .gnb a.active {
-    background-color: #C4A6FF;
+    background-color: #6400C4;
     /* 진한 보라색 */
     color: white;
     font-weight: 800;
