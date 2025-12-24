@@ -510,3 +510,25 @@ strong {
         font-size: 1.3rem;
     }
 }
+
+/* --- 로고 이미지 스타일 --- */
+.logo-img {
+    height: 50px;
+    /* PC에서 보여질 높이 (원하는 대로 숫자 조절 가능) */
+    width: auto;
+    /* 비율 유지 */
+    display: block;
+    /* 이미지 아래 빈 공간 제거 */
+    margin: 0 auto;
+    /* 가운데 정렬 */
+}
+
+/* 모바일에서는 로고가 너무 크면 안 되니까 조금 줄이기 */
+@media (max-width: 768px) {
+    .logo-img {
+        height: 35px;
+        /* 모바일 높이 (원하는 대로 조절) */
+        max-width: 80%;
+        /* 화면 폭을 넘어가지 않게 방지 */
+    }
+}
