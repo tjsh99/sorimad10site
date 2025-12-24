@@ -1,6 +1,5 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
 
-/* 1. 기본 세팅 */
 body {
     background-color: white;
     color: #333;
@@ -13,7 +12,6 @@ a {
     text-decoration: none;
     color: inherit;
     display: block;
-    /* 링크 영역 확보 */
 }
 
 .container {
@@ -21,16 +19,12 @@ a {
     max-width: 1200px;
     margin: 0 auto;
     box-sizing: border-box;
-    /* 패딩이 너비에 포함되도록 설정 */
 }
 
-/* 2. 헤더 영역 (고정 X, 일반 배치) */
 header {
     background-color: white;
     padding-top: 40px;
-    /* 위쪽 여백 */
     padding-bottom: 30px;
-    /* 아래쪽 여백 */
     text-align: center;
 }
 
@@ -45,22 +39,15 @@ header {
     color: black;
 }
 
-/* 3. 메인 메뉴바 (GNB) - 꽉 채우기 완벽 수정 */
 .gnb {
     background-color: #8F00FF;
-    /* 연보라색 배경 */
     border-radius: 6px;
-
-    /* 중요! ⭐ 안쪽 여백을 0으로 설정해야 색이 끝까지 참 */
     padding: 0;
-
-    /* 중요! ⭐ 둥근 모서리 밖으로 튀어가는 색깔 잘라내기 */
     overflow: hidden;
 
     width: 100%;
     margin: 0 auto;
 
-    /* Flexbox 설정 */
     display: flex;
 }
 
@@ -73,7 +60,6 @@ header {
 }
 
 .gnb li {
-    /* 중요! ⭐ 모든 메뉴가 공간을 1:1:1:1로 공평하게 나눠가짐 (빈틈 없음) */
     flex: 1;
     text-align: center;
 }
@@ -82,29 +68,23 @@ header {
     display: block;
     width: 100%;
     padding: 12px 0;
-    /* 버튼 높이감 */
     font-size: 1.1rem;
     font-weight: bold;
     color: #ffffff;
     transition: 0.1s;
-    /* 반응 속도 빠르게 */
 }
 
-/* 마우스 올렸을 때(Hover) & 활성화(Active) 상태 */
 .gnb a:hover,
 .gnb a.active {
     background-color: #6400C4;
-    /* 진한 보라색 */
     color: white;
     font-weight: 800;
 }
 
-/* 4. 서브 메뉴 (2단 메뉴) */
 .sub-gnb {
     margin-top: 15px;
     text-align: center;
     border-bottom: 2px solid #eee;
-    /* 하단 구분선 */
     padding-bottom: 10px;
     margin-bottom: 30px;
 }
@@ -114,9 +94,7 @@ header {
     padding: 0;
     margin: 0;
     display: inline-flex;
-    /* 내용물만큼만 너비 차지 */
     gap: 40px;
-    /* 메뉴 사이 간격 */
 }
 
 .sub-gnb a {
@@ -125,11 +103,9 @@ header {
     font-weight: 500;
     padding-bottom: 5px;
     border-bottom: 2px solid transparent;
-    /* 미리 투명 선을 줘서 움직임 방지 */
     transition: 0.2s;
 }
 
-/* 서브 메뉴 활성화 효과 */
 .sub-gnb a:hover,
 .sub-gnb a.sub-active {
     color: #6200ea;
@@ -137,10 +113,8 @@ header {
     font-weight: bold;
 }
 
-/* 5. 연도 선택 버튼 */
 .year-selector {
     text-align: left;
-    /* 왼쪽 정렬 */
     margin-bottom: 20px;
 }
 
@@ -153,7 +127,6 @@ header {
     font-size: 0.9rem;
     background: white;
     margin-right: 5px;
-    /* 오른쪽 여백 */
     transition: 0.2s;
 }
 
@@ -161,24 +134,20 @@ header {
     background: #f5f5f5;
 }
 
-/* 선택된 연도 */
 .year-btn.year-active {
     background: #333;
     color: white;
     border-color: #333;
 }
 
-/* 6. 본문 및 기타 요소 */
 .content-area {
     padding: 0 20px 50px 20px;
     text-align: center;
     line-height: 1.6;
     color: #666;
     min-height: 500px;
-    /* 너무 짧아 보이지 않게 최소 높이 지정 */
 }
 
-/* 구글 폼 컨테이너 */
 .form-container {
     max-width: 800px;
     margin: 0 auto;
@@ -186,23 +155,16 @@ header {
     padding: 10px;
 }
 
-
-/* --- 어워즈 페이지 스타일 --- */
-
-/* 1. 상단 하이라이트 (3개 가로 배치) */
 .awards-top-section {
     display: flex;
     justify-content: space-between;
-    /* 양 끝 정렬 */
     gap: 20px;
-    /* 사이 간격 */
     margin-bottom: 50px;
     margin-top: 30px;
 }
 
 .top-card {
     flex: 1;
-    /* 3개가 똑같은 크기를 가짐 */
     text-align: center;
 }
 
@@ -218,18 +180,15 @@ header {
     font-size: 1rem;
 }
 
-/* 2. 구분선 */
 .divider {
     border: none;
     border-top: 1px solid #eee;
     margin: 50px 0;
 }
 
-/* 3. 하단 후보 리스트 */
 .awards-category {
     margin-bottom: 60px;
     text-align: left;
-    /* 제목 왼쪽 정렬 */
 }
 
 .category-title {
@@ -237,13 +196,10 @@ header {
     margin-bottom: 20px;
     padding-left: 10px;
     border-left: 5px solid #E8D9FF;
-    /* 왼쪽에 보라색 포인트 선 */
 }
 
-/* 5개 가로 배치 그리드 */
 .nominee-grid {
     display: grid;
-    /* 1fr을 5번 반복 -> 한 줄에 5개 */
     grid-template-columns: repeat(5, 1fr);
     gap: 15px;
 }
@@ -259,15 +215,12 @@ header {
     font-weight: bold;
 }
 
-/* 4. 공통 이미지 스타일 (16:9 비율 고정) */
 .img-wrapper {
     width: 100%;
-    /* aspect-ratio: 16 / 9; -> 최신 브라우저용 비율 고정 마법 */
     aspect-ratio: 16 / 9;
     background-color: #eee;
     border-radius: 8px;
     overflow: hidden;
-    /* 이미지 튀어나오는 거 방지 */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -275,38 +228,28 @@ header {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* 비율 유지하면서 꽉 채우기 (짤림 허용) */
     transition: transform 0.3s;
 }
 
-/* 마우스 올리면 이미지 살짝 확대 */
 .img-wrapper:hover img {
     transform: scale(1.05);
 }
 
-/* --- 모바일 대응 (화면 작아지면) --- */
 @media (max-width: 768px) {
 
-    /* 상단 3개 -> 세로로 쭉 나열 */
     .awards-top-section {
         flex-direction: column;
     }
 
-    /* 후보 5개 -> 한 줄에 2개씩 나오게 변경 (너무 작아지니까) */
     .nominee-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-
-/* --- 톱 페이지 심플 버전 --- */
 .simple-intro {
     max-width: 800px;
-    /* 글이 너무 퍼지지 않게 중앙 집중 */
     margin: 50px auto;
-    /* 위아래 여백 좀 주고 가운데 정렬 */
     text-align: left;
-    /* 왼쪽 정렬 */
     padding: 0 20px;
     color: #333;
 }
@@ -316,12 +259,10 @@ header {
     font-weight: bold;
     margin-bottom: 40px;
     text-align: center;
-    /* 메인 문구만 가운데 정렬 (보기 좋음) */
 }
 
 .intro-group {
     margin-bottom: 40px;
-    /* 문단 사이 간격 */
 }
 
 .intro-group h3 {
@@ -334,43 +275,31 @@ header {
 .intro-group p {
     font-size: 1rem;
     line-height: 1.8;
-    /* 줄 간격 넉넉하게 */
     margin: 0;
     color: #444;
 }
 
-/* 강조 텍스트 */
 strong {
     color: #000;
     font-weight: 800;
 }
 
-/* 작은 글씨 (괄호 내용) */
 .small-text {
     font-size: 0.9rem;
     color: #666;
     font-weight: bold;
-    /* 밑줄 대신 굵게 처리 */
 }
 
-
-/* ========================================= */
-/* 📱 모바일 최적화 (화면 폭 768px 이하일 때) */
-/* ========================================= */
 @media (max-width: 768px) {
 
-    /* 1. 전체 레이아웃 */
     .container {
         padding: 0 15px;
-        /* 양옆 여백 줄임 */
     }
 
     .content-area {
         padding: 20px 10px;
-        /* 본문 여백 축소 */
     }
 
-    /* 2. 메인 타이틀 줄이기 */
     header {
         padding-top: 20px;
         padding-bottom: 20px;
@@ -378,38 +307,30 @@ strong {
 
     .main-title {
         font-size: 2rem;
-        /* 제목 크기 축소 */
         margin-bottom: 15px;
     }
 
-    /* 3. 메인 메뉴바 (GNB) - 완벽 수정 버전 (2x2 배열) */
     .gnb {
         height: auto;
-        /* 높이 자동 조절 */
         border-radius: 8px;
     }
 
     .gnb ul {
         flex-wrap: wrap;
-        /* ★ 중요: 여기서 줄바꿈 허용 */
     }
 
     .gnb li {
         flex: 0 0 50%;
-        /* 한 줄에 50%씩 차지 (2개 배치) */
         width: 50%;
         box-sizing: border-box;
 
-        /* 가로선 (메뉴 사이 구분) */
         border-bottom: 1px solid rgba(255, 255, 255, 0.3);
     }
 
-    /* 홀수 번째(왼쪽) 메뉴는 오른쪽에 세로선 추가 */
     .gnb li:nth-child(odd) {
         border-right: 1px solid rgba(255, 255, 255, 0.3);
     }
 
-    /* 마지막 줄(3번째, 4번째)은 바닥 선 없애기 */
     .gnb li:nth-last-child(1),
     .gnb li:nth-last-child(2) {
         border-bottom: none;
@@ -417,12 +338,9 @@ strong {
 
     .gnb a {
         padding: 12px 0;
-        /* 터치하기 좋게 높이 조정 */
         font-size: 0.95rem;
-        /* 글자 크기 살짝 줄임 */
     }
 
-    /* 4. 서브 메뉴 (10선 결과, 모두의 10선...) */
     .sub-gnb {
         margin-top: 15px;
         margin-bottom: 20px;
@@ -430,7 +348,6 @@ strong {
 
     .sub-gnb ul {
         gap: 20px;
-        /* 간격 좁힘 */
         justify-content: center;
     }
 
@@ -438,10 +355,8 @@ strong {
         font-size: 0.9rem;
     }
 
-    /* 5. 어워즈 페이지 (상단 3개/4개 박스) */
     .awards-top-section {
         flex-direction: column;
-        /* 세로로 쭉 나열 */
         gap: 30px;
     }
 
@@ -449,22 +364,17 @@ strong {
         margin-bottom: 10px;
     }
 
-    /* 어워즈 후보 리스트 (5개 -> 2개씩 보이게) */
     .nominee-grid {
         grid-template-columns: repeat(2, 1fr);
-        /* 한 줄에 2개 */
         gap: 10px;
     }
 
-    /* 후보 이름 폰트 줄이기 */
     .nominee-name {
         font-size: 0.85rem;
     }
 
-    /* 6. 10선 결과 / 모두의 10선 (영상 리스트) */
     .video-grid {
         grid-template-columns: repeat(2, 1fr);
-        /* 한 줄에 2개 */
         gap: 10px;
     }
 
@@ -473,34 +383,28 @@ strong {
         padding: 8px;
     }
 
-    /* 7. 코멘트 페이지 */
     .video-header {
         flex-direction: column;
-        /* 썸네일과 제목 세로로 */
         align-items: flex-start;
         gap: 10px;
     }
 
     .video-thumbnail {
         width: 100px;
-        /* 썸네일 조금 키움 */
         height: auto;
     }
 
     .comment-table th,
     .comment-table td {
         padding: 8px;
-        /* 표 여백 줄임 */
         font-size: 0.85rem;
     }
 
-    /* 모바일에서 표의 '투표자' 칸 너비 조정 */
     .comment-table td:first-child {
         width: 30%;
         min-width: 60px;
     }
 
-    /* 8. 톱 페이지 설명문 */
     .simple-intro {
         padding: 0 5px;
         margin: 30px auto;
@@ -511,24 +415,16 @@ strong {
     }
 }
 
-/* --- 로고 이미지 스타일 --- */
 .logo-img {
     height: 50px;
-    /* PC에서 보여질 높이 (원하는 대로 숫자 조절 가능) */
     width: auto;
-    /* 비율 유지 */
     display: block;
-    /* 이미지 아래 빈 공간 제거 */
     margin: 0 auto;
-    /* 가운데 정렬 */
 }
 
-/* 모바일에서는 로고가 너무 크면 안 되니까 조금 줄이기 */
 @media (max-width: 768px) {
     .logo-img {
         height: 35px;
-        /* 모바일 높이 (원하는 대로 조절) */
         max-width: 80%;
-        /* 화면 폭을 넘어가지 않게 방지 */
     }
 }
