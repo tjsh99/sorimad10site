@@ -428,3 +428,21 @@ strong {
         max-width: 80%;
     }
 }
+
+.channel-btn {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 3px 8px;
+    font-size: 0.8rem;
+    color: white;
+    background-color: #ff0000;
+    border-radius: 4px;
+    text-decoration: none;
+    vertical-align: middle;
+    transition: 0.2s;
+    font-weight: bold;
+}
+
+.channel-btn:hover {
+    background-color: #cc0000;
+}

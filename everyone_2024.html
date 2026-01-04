@@ -38,6 +38,22 @@
             background-color: #444;
         }
 
+        .channel-visit-btn {
+            font-size: 0.8rem;
+            color: white;
+            background-color: #ff0000;
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-left: 10px;
+            transition: 0.2s;
+            display: inline-block;
+        }
+
+        .channel-visit-btn:hover {
+            background-color: #cc0000;
+        }
+
         .video-scroll-container {
             max-height: 0;
             overflow: hidden;
@@ -172,7 +188,8 @@
             const sheetId = '1DZET9hl7eVakqGtGuztbGfE6cjWtO0r5Nm3QA_XFjEg';
             const sheetName = '2024';
             const baseUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?`;
-            const query = encodeURIComponent(`Select B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, AA, AB, AC, AD, AE, AF`);
+
+            const query = encodeURIComponent(`Select B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, AA, AB, AC, AD, AE, AF, AG`);
             const url = `${baseUrl}&sheet=${sheetName}&tq=${query}`;
 
             fetch(url)
@@ -183,7 +200,9 @@
 
                     data.table.rows.forEach((row, index) => {
                         if (index === 0) return;
+
                         const title = row.c[0]?.v;
+                        const channelLink = row.c[1]?.v; 
 
                         if (title) {
                             const section = document.createElement('div');
@@ -191,13 +210,30 @@
 
                             const header = document.createElement('div');
                             header.className = 'toggle-header';
-                            header.textContent = title;
+
+                            const nameSpan = document.createElement('span');
+                            nameSpan.textContent = title;
+                            header.appendChild(nameSpan);
+
+                            if (channelLink) {
+                                const btn = document.createElement('a');
+                                btn.href = channelLink;
+                                btn.textContent = '채널 방문 ▶';
+                                btn.className = 'channel-visit-btn';
+                                btn.target = '_blank';
+
+                                btn.onclick = (e) => {
+                                    e.stopPropagation();
+                                };
+                                header.appendChild(btn);
+                            }
+
                             header.onclick = () => toggleSection(section);
 
                             const scrollContainer = document.createElement('div');
                             scrollContainer.className = 'video-scroll-container';
 
-                            for (let i = 1; i < row.c.length; i += 3) {
+                            for (let i = 2; i < row.c.length; i += 3) {
                                 const videoId = row.c[i]?.v;
                                 const videoTitle = row.c[i + 1]?.v;
                                 const videoComment = row.c[i + 2]?.v;
