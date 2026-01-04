@@ -8,6 +8,36 @@
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="favicon.png">
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        .nominee-name {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            word-break: break-word;
+            height: 2.8em;
+            line-height: 1.4;
+        }
+
+        /* 2025년과 동일한 우승작 스타일 적용 */
+        .top-card h3 {
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+            color: #6200ea;
+            /* 보라색 강조 */
+        }
+
+        .top-card p {
+            color: #333;
+            font-weight: bold;
+            word-break: break-word;
+            font-style: normal;
+            /* 기존 italic 제거하고 또렷하게 */
+        }
+    </style>
 </head>
 
 <body>
