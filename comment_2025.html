@@ -8,6 +8,84 @@
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="favicon.png">
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        #legacy-code-area {
+            width: 100%;
+            text-align: left;
+        }
+
+        .comment-group {
+            margin-bottom: 40px;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .video-header {
+            background-color: #333;
+            color: #fff;
+            padding: 15px 20px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .video-header:hover {
+            background-color: #444;
+        }
+
+        .video-thumbnail {
+            width: 80px;
+            height: 45px;
+            border-radius: 4px;
+            object-fit: cover;
+            flex-shrink: 0;
+            background-color: black;
+        }
+
+        .comment-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+        }
+
+        .comment-table th,
+        .comment-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+            line-height: 1.5;
+        }
+
+        .comment-table th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+            color: #555;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .comment-table td:first-child {
+            width: 20%;
+            min-width: 100px;
+            font-weight: bold;
+            color: #333;
+            vertical-align: top;
+        }
+
+        .comment-table td:last-child {
+            color: #555;
+        }
+
+        .comment-table tr:last-child td {
+            border-bottom: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -45,11 +123,127 @@
                 <a href="comment_2024.html" class="year-btn">2024</a>
             </div>
 
-            <p>집계 중</p>
-
+            <div id="legacy-code-area">
+                <div id="container"></div>
+            </div>
         </main>
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const sheetId = '1DZET9hl7eVakqGtGuztbGfE6cjWtO0r5Nm3QA_XFjEg';
+            const sheetName = '2025'; // ★ 2025년 탭으로 설정
+            const baseUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?`;
+
+            // B(이름), C(링크-무시), D~AG(데이터)
+            const query = encodeURIComponent(`Select B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, AA, AB, AC, AD, AE, AF, AG`);
+            const url = `${baseUrl}&sheet=${sheetName}&tq=${query}`;
+
+            fetch(url)
+                .then(res => res.text())
+                .then(rep => {
+                    const data = JSON.parse(rep.substr(47).slice(0, -2));
+                    const container = document.getElementById('container');
+
+                    // 데이터 없을 때 처리
+                    if (!data.table || !data.table.rows || data.table.rows.length === 0) {
+                        container.innerHTML = '<p style="text-align:center; padding:50px;">데이터를 불러오는 중입니다.</p>';
+                        return;
+                    }
+
+                    const videoComments = {};
+
+                    data.table.rows.forEach((row, index) => {
+                        if (index === 0) return;
+
+                        const bValue = row.c[0]?.v; // 이름
+
+                        // ★ i=2 (D열)부터 영상 데이터 읽기 (C열은 건너뜀)
+                        for (let i = 2; i < row.c.length; i += 3) {
+                            const videoId = row.c[i]?.v;
+                            const videoTitle = row.c[i + 1]?.v;
+                            const videoComment = row.c[i + 2]?.v;
+
+                            if (videoId && videoTitle) {
+                                if (!videoComments[videoId]) {
+                                    videoComments[videoId] = {
+                                        title: videoTitle,
+                                        thumbnail: `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`,
+                                        comments: []
+                                    };
+                                }
+                                if (videoComment) {
+                                    videoComments[videoId].comments.push({ bValue, comment: videoComment });
+                                } else {
+                                    videoComments[videoId].comments.push({ bValue, comment: '' });
+                                }
+                            }
+                        }
+                    });
+
+                    // 정렬: 코멘트 많은 순 -> 제목 가나다 순
+                    const sortedVideos = Object.entries(videoComments).sort((a, b) => {
+                        const commentCountA = a[1].comments.length;
+                        const commentCountB = b[1].comments.length;
+                        if (commentCountA > commentCountB) return -1;
+                        if (commentCountA < commentCountB) return 1;
+                        return a[1].title.localeCompare(b[1].title);
+                    });
+
+                    sortedVideos.forEach(([videoId, { title, thumbnail, comments }]) => {
+
+                        const group = document.createElement('div');
+                        group.className = 'comment-group';
+
+                        const header = document.createElement('div');
+                        header.className = 'video-header';
+                        const thumbnailImg = document.createElement('img');
+                        thumbnailImg.src = thumbnail;
+                        thumbnailImg.className = 'video-thumbnail';
+                        const titleText = document.createElement('div');
+                        titleText.textContent = title;
+                        header.appendChild(thumbnailImg);
+                        header.appendChild(titleText);
+
+                        header.onclick = () => window.open(`https://youtu.be/${videoId}`, '_blank');
+
+                        group.appendChild(header);
+
+                        const table = document.createElement('table');
+                        table.className = 'comment-table';
+
+                        const tableHeader = document.createElement('thead');
+                        const headerRow = document.createElement('tr');
+                        const headerCell1 = document.createElement('th');
+                        headerCell1.textContent = '투표자';
+                        const headerCell2 = document.createElement('th');
+                        headerCell2.textContent = '코멘트';
+                        headerRow.appendChild(headerCell1);
+                        headerRow.appendChild(headerCell2);
+                        tableHeader.appendChild(headerRow);
+                        table.appendChild(tableHeader);
+
+                        const tableBody = document.createElement('tbody');
+
+                        // 투표 순서(입력 순서) 그대로 출력 (정렬 코드 없음)
+                        comments.forEach(({ bValue, comment }) => {
+                            const row = document.createElement('tr');
+                            const cell1 = document.createElement('td');
+                            cell1.textContent = bValue || '-';
+                            const cell2 = document.createElement('td');
+                            cell2.textContent = comment || '';
+                            row.appendChild(cell1);
+                            row.appendChild(cell2);
+                            tableBody.appendChild(row);
+                        });
+                        table.appendChild(tableBody);
+
+                        group.appendChild(table);
+                        container.appendChild(group);
+                    });
+                });
+        });
+    </script>
 </body>
 
 </html>
