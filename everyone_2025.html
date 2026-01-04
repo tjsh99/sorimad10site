@@ -8,6 +8,137 @@
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="favicon.png">
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        #legacy-code-area {
+            width: 100%;
+            max-width: 100%;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .toggle-section {
+            margin-bottom: 10px;
+        }
+
+        .toggle-header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .toggle-header:hover {
+            background-color: #444;
+        }
+
+        .channel-visit-btn {
+            font-size: 0.8rem;
+            color: white;
+            background-color: #ff0000;
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-left: 10px;
+            transition: 0.2s;
+            display: inline-block;
+        }
+
+        .channel-visit-btn:hover {
+            background-color: #cc0000;
+        }
+
+        .video-scroll-container {
+            max-height: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding: 0 5px;
+            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+        }
+
+        .toggle-section.open .video-scroll-container {
+            max-height: 2000px;
+            padding: 10px 5px;
+        }
+
+        .video-card {
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .video-card:hover {
+            transform: translateX(5px);
+            background-color: #f9f9f9;
+        }
+
+        .video-thumbnail {
+            width: 120px;
+            height: 68px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-right: 15px;
+            flex-shrink: 0;
+            background-color: #000;
+        }
+
+        .video-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .video-title {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #222;
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .video-comment {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .video-scroll-container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .video-scroll-container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .video-scroll-container::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 4px;
+        }
+    </style>
 </head>
 
 <body>
@@ -45,10 +176,138 @@
                 <a href="everyone_2024.html" class="year-btn">2024</a>
             </div>
 
-            <p>집계 중</p>
+            <div id="legacy-code-area">
+                <div id="container"></div>
+            </div>
 
         </main>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const sheetId = '1DZET9hl7eVakqGtGuztbGfE6cjWtO0r5Nm3QA_XFjEg';
+            const sheetName = '2025'; // ★ 여기를 2025로 설정함!
+            const baseUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?`;
+
+            // B(이름), C(링크), D~AG(영상데이터)
+            const query = encodeURIComponent(`Select B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, AA, AB, AC, AD, AE, AF, AG`);
+            const url = `${baseUrl}&sheet=${sheetName}&tq=${query}`;
+
+            fetch(url)
+                .then(res => res.text())
+                .then(rep => {
+                    const data = JSON.parse(rep.substr(47).slice(0, -2));
+                    const container = document.getElementById('container');
+
+                    // 데이터가 없는 경우 처리
+                    if (!data.table || !data.table.rows || data.table.rows.length === 0) {
+                        container.innerHTML = '<p style="text-align:center; padding:50px;">데이터를 불러오는 중입니다.</p>';
+                        return;
+                    }
+
+                    data.table.rows.forEach((row, index) => {
+                        if (index === 0) return;
+
+                        const title = row.c[0]?.v;       // B열: 이름
+                        const channelLink = row.c[1]?.v; // C열: 채널 링크
+
+                        if (title) {
+                            const section = document.createElement('div');
+                            section.className = 'toggle-section';
+
+                            const header = document.createElement('div');
+                            header.className = 'toggle-header';
+
+                            const nameSpan = document.createElement('span');
+                            nameSpan.textContent = title;
+                            header.appendChild(nameSpan);
+
+                            // 링크가 있으면 버튼 추가
+                            if (channelLink) {
+                                const btn = document.createElement('a');
+                                btn.href = channelLink;
+                                btn.textContent = '채널 ▶';
+                                btn.className = 'channel-visit-btn';
+                                btn.target = '_blank';
+
+                                // 버튼 클릭 시 토글 방지
+                                btn.onclick = (e) => {
+                                    e.stopPropagation();
+                                };
+                                header.appendChild(btn);
+                            }
+
+                            header.onclick = () => toggleSection(section);
+
+                            const scrollContainer = document.createElement('div');
+                            scrollContainer.className = 'video-scroll-container';
+
+                            // D열(인덱스 2)부터 영상 데이터 반복
+                            for (let i = 2; i < row.c.length; i += 3) {
+                                const videoId = row.c[i]?.v;
+                                const videoTitle = row.c[i + 1]?.v;
+                                const videoComment = row.c[i + 2]?.v;
+
+                                if (videoId && videoTitle) {
+                                    const card = createVideoCard(videoId, videoTitle, videoComment);
+                                    scrollContainer.appendChild(card);
+                                }
+                            }
+
+                            section.appendChild(header);
+                            section.appendChild(scrollContainer);
+                            container.appendChild(section);
+                        }
+                    });
+                });
+
+            function createVideoCard(videoId, videoTitle, videoComment) {
+                const card = document.createElement('div');
+                card.className = 'video-card';
+
+                const thumbnail = document.createElement('img');
+                thumbnail.src = `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
+                thumbnail.className = 'video-thumbnail';
+
+                const info = document.createElement('div');
+                info.className = 'video-info';
+
+                const title = document.createElement('div');
+                title.className = 'video-title';
+                title.textContent = videoTitle;
+
+                const comment = document.createElement('div');
+                comment.className = 'video-comment';
+                comment.textContent = videoComment || '';
+
+                info.appendChild(title);
+                info.appendChild(comment);
+                card.appendChild(thumbnail);
+                card.appendChild(info);
+
+                card.onclick = () => window.open(`https://youtu.be/${videoId}`, '_blank');
+                return card;
+            }
+
+            function toggleSection(section) {
+                document.querySelectorAll('.toggle-section').forEach(sec => {
+                    if (sec !== section) {
+                        sec.classList.remove('open');
+                        const scrollContainer = sec.querySelector('.video-scroll-container');
+                        scrollContainer.style.maxHeight = '0';
+                    }
+                });
+
+                section.classList.toggle('open');
+                const scrollContainer = section.querySelector('.video-scroll-container');
+                if (section.classList.contains('open')) {
+                    scrollContainer.style.maxHeight = `${scrollContainer.scrollHeight}px`;
+                } else {
+                    scrollContainer.style.maxHeight = '0';
+                }
+            }
+        });
+    </script>
 
 </body>
 
